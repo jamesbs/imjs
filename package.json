@@ -2,7 +2,7 @@
   "name": "imjs",
   "module": "index.ts",
   "scripts": {
-    "start:server": "bun run server/index.ts"
+    "start:server": "bun run --watch server/index.ts"
   },
   "devDependencies": {
     "bun-types": "latest"
@@ -12,6 +12,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@elysiajs/trpc": "^0.7.0",
     "@trpc/client": "^10.43.3",
     "@trpc/server": "^10.43.3",
     "elysia": "^0.7.24"
