@@ -1,1 +1,0 @@
-{"version":3,"file":"main.js","sources":["./web/index.js"],"sourcesContent":["document.querySelector('#root').append(`hello`)\n"],"names":["document","querySelector","append"],"mappings":"2DAAAA,SAASC,aAAa,CAAC,SAASC,MAAM,CAAC,Q"}

@@ -1,2 +1,0 @@
-!function(){var e={707:function(e,o,t){"use strict";t.r(o),document.querySelector("#root").append("hello")}},o={};function t(r){var n=o[r];if(void 0!==n)return n.exports;var u=o[r]={exports:{}};return e[r](u,u.exports,t),u.exports}t.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},t("707")}();
-//# sourceMappingURL=main.js.map
