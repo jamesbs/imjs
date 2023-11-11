@@ -2,24 +2,30 @@
   "name": "imjs",
   "module": "index.ts",
   "scripts": {
-    "start:server": "bun run --watch server/index.ts",
-    "build": "bun run rspack"
+    "start:server": "bun run --watch app/server/index.ts",
+    "build:web": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack build",
+    "build+watch:web": "NODE_OPTIONS=\"--loader ts-node/esm\" rspack build --watch",
+    "build:typia": "typia generate --input app/model/source --output app/model/generated --project tsconfig.strict.json"
   },
   "devDependencies": {
     "bun-types": "latest",
-    "esbuild-loader": "^4.0.2"
+    "esbuild-loader": "^4.0.2",
+    "ts-node": "^10.9.1",
+    "ts-patch": "^3.0.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "type": "module",
   "dependencies": {
+    "@elysiajs/static": "^0.7.1",
     "@elysiajs/trpc": "^0.7.0",
     "@rspack/cli": "^0.3.11",
     "@rspack/plugin-html": "^0.3.11",
     "@trpc/client": "^10.43.3",
     "@trpc/server": "^10.43.3",
     "elysia": "^0.7.24",
-    "preact": "^10.18.2"
+    "preact": "^10.18.2",
+    "typia": "^5.2.6"
   }
 }

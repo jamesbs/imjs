@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "module": "esnext",
     "target": "esnext",
+    "module": "esnext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "allowImportingTsExtensions": true,
@@ -11,12 +10,19 @@
     "strict": true,
     "downlevelIteration": true,
     "skipLibCheck": true,
-    "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+    "lib": ["ESNext", "DOM"],
     "types": [
-      "bun-types" // add Bun global
-    ]
+      "bun-types", // add Bun global
+      "./web/typings.d.ts"
+    ],
+    "plugins": [{ "transform": "typia/lib/transform" }]
+  },
+  "ts-node": {
+    "esm": true
   }
 }
