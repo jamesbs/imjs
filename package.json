@@ -2,11 +2,12 @@
   "name": "imjs",
   "module": "index.ts",
   "scripts": {
-    "start:server": "bun run --watch server/index.ts"
+    "start:server": "bun run --watch server/index.ts",
+    "build": "bun run rspack"
   },
   "devDependencies": {
     "bun-types": "latest",
-    "html-webpack-plugin": "^5.5.3"
+    "esbuild-loader": "^4.0.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -15,8 +16,10 @@
   "dependencies": {
     "@elysiajs/trpc": "^0.7.0",
     "@rspack/cli": "^0.3.11",
+    "@rspack/plugin-html": "^0.3.11",
     "@trpc/client": "^10.43.3",
     "@trpc/server": "^10.43.3",
-    "elysia": "^0.7.24"
+    "elysia": "^0.7.24",
+    "preact": "^10.18.2"
   }
 }
