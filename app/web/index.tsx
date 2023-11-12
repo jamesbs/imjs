@@ -1,7 +1,8 @@
 import { render } from 'react-dom'
+import { App } from './App'
 
 const root = document.querySelector('#root')
 
 if (root) {
-  render(<h1>hello</h1>, root)
+  render(<App />, root)
 }
