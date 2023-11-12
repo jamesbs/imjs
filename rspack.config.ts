@@ -23,7 +23,7 @@ const config = {
         test: /\.tsx?$/,
         loader: 'esbuild-loader',
         options: {
-          tsconfig: './tsconfig.web.json',
+          tsconfig: './tsconfig.json',
         },
       },
     ],

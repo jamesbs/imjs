@@ -8,6 +8,7 @@
     "build:typia": "typia generate --input app/model/source --output app/model/generated --project tsconfig.strict.json"
   },
   "devDependencies": {
+    "@types/react": "^18.2.37",
     "bun-types": "latest",
     "esbuild-loader": "^4.0.2",
     "ts-node": "^10.9.1",
@@ -24,8 +25,10 @@
     "@rspack/plugin-html": "^0.3.11",
     "@trpc/client": "^10.43.3",
     "@trpc/server": "^10.43.3",
+    "@types/react-dom": "^18.2.15",
     "elysia": "^0.7.24",
-    "preact": "^10.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typia": "^5.2.6"
   }
 }

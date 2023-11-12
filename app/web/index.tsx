@@ -1,4 +1,4 @@
-import { render } from 'preact'
+import { render } from 'react-dom'
 
 const root = document.querySelector('#root')
 
