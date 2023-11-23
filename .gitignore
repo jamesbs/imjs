@@ -3,3 +3,7 @@ node_modules
 dist
 app/model/generated
 .env
+.env.bck
+.db
+scripts
+dev.db

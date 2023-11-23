@@ -4,7 +4,9 @@ import HtmlRspackPluginModule from '@rspack/plugin-html'
 import { DotenvPlugin } from 'rspack-plugin-dotenv'
 
 // some weird issue with how rspack handles module imports/exports
-const HtmlRspackPlugin = (HtmlRspackPluginModule as any).default
+// also seems to work differently in docker than dev environment
+const HtmlRspackPlugin =
+  (HtmlRspackPluginModule as any).default || HtmlRspackPluginModule
 
 const config = {
   entry: {
@@ -33,4 +35,9 @@ const config = {
   },
 }
 
-export default config
+export default (_: unknown, flags: any) => {
+  return {
+    ...config,
+    mode: flags.mode ?? 'development',
+  }
+}

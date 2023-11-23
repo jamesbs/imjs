@@ -8,7 +8,7 @@ import { paths } from '../../env.ts'
 
 const staticAssetsPath = paths.dist
 
-export const serve = ({ port = 8080 }) => {
+export const serve = ({ port = 3000 }) => {
   new Elysia()
     .use(
       trpc(router, {
