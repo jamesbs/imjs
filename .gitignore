@@ -5,4 +5,4 @@ app/model/generated
 .env
 .db
 scripts
-dev.db
+dev.db*
