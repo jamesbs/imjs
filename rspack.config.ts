@@ -31,6 +31,10 @@ const config = {
           tsconfig: './tsconfig.json',
         },
       },
+      {
+        test: /\.txt$/,
+        use: ['file-loader'],
+      },
     ],
   },
 }

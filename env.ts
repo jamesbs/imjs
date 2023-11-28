@@ -7,6 +7,6 @@ export const getCurrentPath = ({ url }: ImportMeta) =>
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 export const paths = {
-  dist: path.resolve(__dirname, 'dist'),
-  web: path.resolve(__dirname, 'app/web'),
+  dist: path.resolve(__dirname, 'dist') as `${string}/dist`,
+  web: path.resolve(__dirname, 'app/web') as `${string}/app/web`,
 }
