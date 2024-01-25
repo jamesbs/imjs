@@ -19,7 +19,6 @@
     "@types/react-dom": "^18.2.15",
     "@types/web": "^0.0.119",
     "bun-types": "latest",
-    "connectkit": "^1.5.3",
     "dotenv-webpack": "^8.0.1",
     "esbuild-loader": "^4.0.2",
     "file-loader": "^6.2.0",
@@ -28,9 +27,7 @@
     "rspack-plugin-dotenv": "^0.0.3",
     "ts-node": "^10.9.1",
     "ts-patch": "^3.0.2",
-    "typia": "^5.2.6",
-    "viem": "^1.18.9",
-    "wagmi": "^1.4.6"
+    "typia": "^5.2.6"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

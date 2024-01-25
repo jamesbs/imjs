@@ -1,7 +1,5 @@
 import { useAccount } from 'wagmi'
 
 export const Main = () => {
-  const { address, isConnected } = useAccount()
-
-  return isConnected ? <div>Connected with: {address}</div> : null
+  return <div>this is the main component</div>
 }
