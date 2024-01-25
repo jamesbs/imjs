@@ -1,4 +1,8 @@
-export type EvmIdentity = {
-  type: 'evm'
-  identifier: `0x${string}`
+import { BlockchainIdentity } from './blockchain-identity'
+import { PublicKey } from './public-key'
+
+export type EvmAddressFormat = `0x${string}`
+
+export type EvmIdentity = BlockchainIdentity & {
+  identifier: PublicKey<EvmAddressFormat>
 }
