@@ -1,15 +1,6 @@
 # imjs
 
-To install dependencies:
+## Running a Dev Server
 
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.0.11. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+1. Run build+watch:web to keep static assets served up to state
+2. Run start:server
