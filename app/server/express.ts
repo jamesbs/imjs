@@ -22,10 +22,6 @@ export const serve = async ({ port = 3000 }) => {
         response.redirect('/auth-gated')
       }
     )
-    .get('/auth-gated', authenticationRequired, (request, response) => {
-      passport.authenticate('github', { failureRedirect: '/login' })
-      response.send('loaded')
-    })
     .get('/logout', authenticationRequired, (request) => {
       request.logout({}, (err) => {
         if (err) {
