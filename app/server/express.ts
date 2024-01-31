@@ -12,7 +12,7 @@ export const serve = async ({ port = 3000 }) => {
 
   app
     .get(
-      '/auth/github',
+      '/auth/login',
       passport.authenticate('github', { scope: ['user:email'] })
     )
     .get(
@@ -22,14 +22,14 @@ export const serve = async ({ port = 3000 }) => {
         response.redirect('/auth-gated')
       }
     )
-    .get('/logout', authenticationRequired, (request) => {
+    .get('/auth/logout', authenticationRequired, (request) => {
       request.logout({}, (err) => {
         if (err) {
           console.log(err)
         }
       })
     })
-    .get('/', async (...[, response]) => {
+    .get('*', async (...[, response]) => {
       response.sendFile(resolve(paths.dist, 'index.html'))
     })
     .listen(port, () => {
