@@ -21,3 +21,10 @@ model Identity {
   account    Account   @relation(fields: [accountId], references: [id])
   accountId  Int
 }
+
+model Session {
+  id        String  @id @default(autoincrement())
+  sid       String  @unique
+  data      String
+  expiresAt DateTime
+}

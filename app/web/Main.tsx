@@ -4,7 +4,7 @@ export const Main = () => {
       this is the main component
       <button
         onClick={() => {
-          location.href = '/auth/github'
+          location.href = '/login'
         }}
       >
         login

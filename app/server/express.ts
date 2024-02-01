@@ -11,18 +11,15 @@ export const serve = async ({ port = 3000 }) => {
   setupAuth(app)
 
   app
-    .get(
-      '/auth/login',
-      passport.authenticate('github', { scope: ['user:email'] })
-    )
+    .get('/login', passport.authenticate('github', { scope: ['user:email'] }))
     .get(
       '/auth/github/callback',
       passport.authenticate('github', { failureRedirect: '/login' }),
       (...[, response]) => {
-        response.redirect('/auth-gated')
+        response.redirect('/')
       }
     )
-    .get('/auth/logout', authenticationRequired, (request) => {
+    .get('/logout', authenticationRequired, (request) => {
       request.logout({}, (err) => {
         if (err) {
           console.log(err)
