@@ -25,7 +25,7 @@ export const setupAuth = (app: Express) => {
         },
       },
     })
-    done(null, account.id)
+    done(null, account?.id)
   })
 
   passport.deserializeUser((user: any, done) => {
