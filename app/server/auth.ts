@@ -3,8 +3,8 @@ import expressSession from 'express-session'
 import passport from 'passport'
 import { Strategy as GithubStrategy } from 'passport-github2'
 import { VerifyCallback } from 'passport-oauth2'
-import { PrismaSessionStore } from '@quixo3/prisma-session-store'
-import { PrismaClient } from '@prisma/client'
+import { PrismaSessionStore } from './prisma-session-store'
+import { prismaClient } from './prisma'
 
 export type GithubUser = {
   id: number
@@ -33,13 +33,15 @@ export const setupAuth = (app: Express) => {
   })
 
   passport.use(githubStrategy)
-  const r = new PrismaClient()
 
   app.use(
     expressSession({
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
+      store: new PrismaSessionStore({
+        client: prismaClient,
+      }),
       cookie: {
         httpOnly: true,
         secure: process.env.ENVIRONMENT === 'production',

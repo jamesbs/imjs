@@ -23,8 +23,7 @@ model Identity {
 }
 
 model Session {
-  id        String  @id @default(autoincrement())
-  sid       String  @unique
-  data      String
+  sid       String  @unique @id
   expiresAt DateTime
+  data      String
 }
