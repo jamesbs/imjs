@@ -5,6 +5,12 @@ export type PrismaSessionStoreConfig = {
   client: PrismaClient
 }
 
+export type PassportSessionData = {
+  passport: {
+    user: number
+  }
+}
+
 export class PrismaSessionStore extends Store {
   client: PrismaClient
 
@@ -22,27 +28,36 @@ export class PrismaSessionStore extends Store {
           },
         })
 
-        if (result === null) {
-          callback(null, null)
-        } else {
-          callback(null, {
+        callback(
+          null,
+          result && {
             sid: result.sid,
+            passport: {
+              user: result.accountId,
+            },
             ...JSON.parse(result.data),
-          })
-        }
+          }
+        )
       } catch (err) {
         callback(err, null)
       }
     })()
   }
 
-  set(sid: string, session: SessionData, callback) {
-    const data = JSON.stringify(session)
+  set(sid: string, session: SessionData & PassportSessionData, callback) {
+    const data = JSON.stringify({ cookie: session.cookie })
+
     const expiresAt =
       session.cookie.expires?.getTime() ??
       new Date().getTime() + (session.cookie.maxAge ?? 60) * 1000
 
     ;(async () => {
+      const account = await this.client.account.findFirst({
+        where: {
+          id: session.passport.user,
+        },
+      })
+
       try {
         await this.client.session.upsert({
           where: {
@@ -54,8 +69,9 @@ export class PrismaSessionStore extends Store {
           },
           create: {
             sid,
-            data,
+            accountId: account.id,
             expiresAt: new Date(expiresAt),
+            data,
           },
         })
         callback(null)

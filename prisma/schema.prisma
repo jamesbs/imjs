@@ -12,18 +12,21 @@ model Account {
   id         Int     @id @default(autoincrement())
   name       String
   identities Identity[]
+  sessions    Session[]
 }
 
 model Identity {
-  id         Int    @id @default(autoincrement())
-  type       String
-  identifier String
-  account    Account   @relation(fields: [accountId], references: [id])
-  accountId  Int
+  id          Int    @id @default(autoincrement())
+  type        String
+  identifier  String
+  account     Account   @relation(fields: [accountId], references: [id])
+  accountId   Int
 }
 
 model Session {
-  sid       String  @unique @id
-  expiresAt DateTime
-  data      String
+  sid         String  @unique @id
+  expiresAt   DateTime
+  data        String
+  account     Account   @relation(fields: [accountId], references: [id])
+  accountId   Int
 }
