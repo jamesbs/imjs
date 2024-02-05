@@ -1,10 +1,15 @@
+import { Container, Theme } from '@radix-ui/themes'
 import { Main } from './Main'
+
+import '@radix-ui/themes/styles.css'
 
 export const App = () => {
   return (
-    <>
-      <h1>App goes here</h1>
-      <Main />
-    </>
+    <Theme>
+      <Container>
+        <h1>imjs</h1>
+        <Main />
+      </Container>
+    </Theme>
   )
 }

@@ -21,11 +21,12 @@ export const serve = async ({ port = 3000 }) => {
         response.redirect('/')
       }
     )
-    .get('/logout', authenticationRequired, (request) => {
+    .get('/logout', authenticationRequired, (request, response) => {
       request.logout({}, (err) => {
         if (err) {
           console.log(err)
         }
+        response.redirect('/')
       })
     })
     .get('/account', async (request, response) => {

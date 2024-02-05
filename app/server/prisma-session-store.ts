@@ -45,20 +45,20 @@ export class PrismaSessionStore extends Store {
   }
 
   set(sid: string, session: SessionData & PassportSessionData, callback) {
-    const data = JSON.stringify({ cookie: session.cookie })
+    const data = JSON.stringify(session)
 
     const expiresAt =
       session.cookie.expires?.getTime() ??
       new Date().getTime() + (session.cookie.maxAge ?? 60) * 1000
 
     ;(async () => {
-      const account = await this.client.account.findFirst({
-        where: {
-          id: session.passport.user,
-        },
-      })
-
       try {
+        const account = await this.client.account.findFirst({
+          where: {
+            id: session.passport.user,
+          },
+        })
+
         await this.client.session.upsert({
           where: {
             sid,
