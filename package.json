@@ -40,6 +40,8 @@
     "@libsql/client": "latest",
     "@prisma/adapter-libsql": "5",
     "@prisma/client": "^5.9.0",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/themes": "^2.0.3",
     "@trpc/client": "^10.43.3",
     "@trpc/server": "^10.43.3",
     "connect-sqlite3": "^0.9.13",
