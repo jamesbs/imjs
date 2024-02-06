@@ -1,12 +1,22 @@
 import { test, expect, describe } from 'bun:test'
-import { isEmptyAccount } from './account'
+import { getInitials } from './account'
 
-describe('isEmptyAccount', () => {
-  test('{} is empty account', () => {
-    expect(isEmptyAccount({})).toBe(true)
+describe('getInitials', () => {
+  test(`prefers displayName over name`, () => {
+    expect(
+      getInitials({ name: 'pmarca', displayName: 'Marc Andreessen' })
+    ).toBe('MA')
   })
 
-  test(`{ id: 1, name: 'imjs' } is not empty account`, () => {
-    expect(isEmptyAccount({ id: 1, name: 'imjs' })).toBe(false)
+  test(`returns a single letter for names not separated by spaces, capitalizes letters`, () => {
+    expect(getInitials({ name: 'xQc' })).toBe('X')
+  })
+
+  test(`returns multiple letters when names are separated by spaces, maxLength is 2 when not provided`, () => {
+    expect(getInitials({ name: 'Mary Elizabeth Winstead' })).toBe('ME')
+  })
+
+  test(`returns multiple letters when names are separated by spaces, provides letters until maxLength when provided`, () => {
+    expect(getInitials({ name: 'Mary Elizabeth Winstead' }, 3)).toBe('MEW')
   })
 })

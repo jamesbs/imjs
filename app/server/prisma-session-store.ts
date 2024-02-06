@@ -51,34 +51,37 @@ export class PrismaSessionStore extends Store {
       session.cookie.expires?.getTime() ??
       new Date().getTime() + (session.cookie.maxAge ?? 60) * 1000
 
-    ;(async () => {
-      try {
-        const account = await this.client.account.findFirst({
-          where: {
-            id: session.passport.user,
-          },
-        })
+    if (session.passport?.user) {
+      ;(async () => {
+        try {
+          const account = await this.client.account.findFirst({
+            where: {
+              id: session.passport.user,
+            },
+          })
 
-        await this.client.session.upsert({
-          where: {
-            sid,
-          },
-          update: {
-            data,
-            expiresAt: new Date(expiresAt),
-          },
-          create: {
-            sid,
-            accountId: account.id,
-            expiresAt: new Date(expiresAt),
-            data,
-          },
-        })
-        callback(null)
-      } catch (err) {
-        callback(err)
-      }
-    })()
+          await this.client.session.upsert({
+            where: {
+              sid,
+            },
+            update: {
+              data,
+              expiresAt: new Date(expiresAt),
+            },
+            create: {
+              sid,
+              accountId: account.id,
+              expiresAt: new Date(expiresAt),
+              data,
+            },
+          })
+        } catch (err) {
+          callback(err)
+        }
+      })()
+    }
+
+    callback(null)
   }
 
   destroy(sid: string | string[], callback) {

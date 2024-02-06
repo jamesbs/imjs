@@ -1,66 +1,25 @@
-import { useEffect, useState } from 'react'
-import { EmptyAccount, isEmptyAccount } from '../model/account'
+import { FC } from 'react'
 import { Account } from '@prisma/client'
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Link,
-  Section,
-  Text,
-  Tooltip,
-} from '@radix-ui/themes'
-import { ExitIcon, GitHubLogoIcon } from '@radix-ui/react-icons'
+import { Button } from '@radix-ui/themes'
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
+import { ValueUnknown, isValueKnown } from '../model/value-unknown'
 
-export const Main = () => {
-  const [account, setAccount] = useState<Account | EmptyAccount | null>(null)
+export type MainProps = {
+  account: Account | null | ValueUnknown
+}
 
-  useEffect(() => {
-    fetch(`/account`)
-      .then((res) => res.json() as Account)
-      .then((res) => {
-        setAccount(res)
-      })
-  }, [])
-
+export const Main: FC<MainProps> = ({ account }) => {
   return (
     <div>
-      {(function () {
-        if (account === null) {
-          return null
-        } else if (isEmptyAccount(account)) {
-          return (
-            <Button
-              onClick={() => {
-                location.href = '/login'
-              }}
-            >
-              <GitHubLogoIcon /> Login with GitHub
-            </Button>
-          )
-        } else {
-          return (
-            <Section>
-              <Flex gap="3" align="center">
-                <Avatar size="4" fallback="JS" radius="full" />
-                <Text as="div">{account.name}</Text>
-                <Tooltip content="Logout">
-                  <IconButton
-                    variant="ghost"
-                    onClick={() => {
-                      location.href = '/logout'
-                    }}
-                  >
-                    <ExitIcon />
-                  </IconButton>
-                </Tooltip>
-              </Flex>
-            </Section>
-          )
-        }
-      })()}
+      {!account && (
+        <Button
+          onClick={() => {
+            location.href = '/login'
+          }}
+        >
+          <GitHubLogoIcon /> Login with GitHub
+        </Button>
+      )}
     </div>
   )
 }

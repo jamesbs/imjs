@@ -25,6 +25,20 @@ export const setupAuth = (app: Express) => {
         },
       },
     })
+
+    if (account) {
+      await prismaClient.account.update({
+        where: {
+          id: account.id,
+        },
+        data: {
+          avatar: user._json.avatar_url,
+          name: user.login,
+          displayName: user.displayName,
+        },
+      })
+    }
+
     done(null, account?.id)
   })
 

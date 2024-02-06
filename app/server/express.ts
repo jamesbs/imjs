@@ -4,7 +4,6 @@ import { resolve } from 'path'
 import { paths } from '../../env.ts'
 import { authenticationRequired, setupAuth } from './auth.ts'
 import { prismaClient } from './prisma.ts'
-import { EMPTY_ACCOUNT } from '../model/account.ts'
 
 export const serve = async ({ port = 3000 }) => {
   const app = express()
@@ -31,7 +30,7 @@ export const serve = async ({ port = 3000 }) => {
     })
     .get('/account', async (request, response) => {
       if (!request.isAuthenticated()) {
-        response.status(401).send(EMPTY_ACCOUNT)
+        response.status(401).send('null')
       } else {
         try {
           const account = await prismaClient.account.findFirstOrThrow({
