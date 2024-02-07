@@ -1,6 +1,6 @@
 import { Container, Theme } from '@radix-ui/themes'
-import { Main } from './_main'
-import { Nav } from './_nav'
+import { Main } from './main'
+import { Nav } from './nav'
 
 import '@radix-ui/themes/styles.css'
 import { useEffect, useState } from 'react'
