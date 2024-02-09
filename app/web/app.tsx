@@ -5,7 +5,8 @@ import { Nav } from './nav'
 import '@radix-ui/themes/styles.css'
 import { useEffect, useState } from 'react'
 import { Account } from '../model/account'
-import { ValueUnknown } from '../model/value-unknown'
+import { ValueUnknown, isValueKnown } from '../model/value-unknown'
+import { container } from './container'
 
 export const App = () => {
   const [account, setAccount] = useState<Account | null | ValueUnknown>(
@@ -13,11 +14,10 @@ export const App = () => {
   )
 
   useEffect(() => {
-    fetch(`/account`)
-      .then((res) => res.json())
-      .then((res: Account | null) => {
-        setAccount(res)
-      })
+    if (!isValueKnown(account)) {
+      const getAccount = container.resolve('getAccount')
+      getAccount().then(setAccount)
+    }
   }, [])
 
   return (
